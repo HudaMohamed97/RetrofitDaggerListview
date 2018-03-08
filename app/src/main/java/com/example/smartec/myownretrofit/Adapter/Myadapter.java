@@ -1,6 +1,7 @@
 package com.example.smartec.myownretrofit.Adapter;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.smartec.myownretrofit.Model.model;
 import com.example.smartec.myownretrofit.R;
+import com.example.smartec.myownretrofit.databinding.MrrowBinding;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,12 +40,16 @@ public class Myadapter extends ArrayAdapter<model> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         // Get the data item for this position
         model user = getItem(position);
-        // Check if an existing view is being reused, otherwise inflate the view
+       /* // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.mrrow, parent, false);
-        }
+        }*/
+        LayoutInflater myinflat=LayoutInflater.from(parent.getContext());
+        MrrowBinding myrow= DataBindingUtil.inflate(myinflat,R.layout.mrrow,parent,false);
+        myrow.setBindMe(myarray.get(position));
+        return myrow.getRoot();
         // Lookup view for data population
-        TextView tvName = (TextView) convertView.findViewById(R.id.textView);
+        /*TextView tvName = (TextView) convertView.findViewById(R.id.textView);
         TextView tvHome = (TextView) convertView.findViewById(R.id.textView1);
         ImageView myview=(ImageView) convertView.findViewById(R.id.myimage);
         TextView mytry = (TextView) convertView.findViewById(R.id.textView2);
@@ -53,10 +59,11 @@ public class Myadapter extends ArrayAdapter<model> {
         tvName.setText(user.getName());
         tvHome.setText(user.getTeam());
         myview.setImageBitmap(image);
-        mytry.setText("hi"+image);
+        mytry.setText("hi"+image);*/
+
 
         // Return the completed view to render on screen
-        return convertView;
+        //return convertView;
     }
     public Bitmap getBitmapFromURL(String src) {
         try {

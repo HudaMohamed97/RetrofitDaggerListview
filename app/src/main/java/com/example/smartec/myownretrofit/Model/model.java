@@ -8,13 +8,13 @@ public class model {
 
     @SerializedName("name")
     @Expose
-    private String name;
+    public String name;
     @SerializedName("realname")
     @Expose
     private String realname;
     @SerializedName("team")
     @Expose
-    private String team;
+    public String team;
     @SerializedName("firstappearance")
     @Expose
     private String firstappearance;
